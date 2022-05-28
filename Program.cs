@@ -1,3 +1,7 @@
+using chatbackend.Repositories;
+using chatbackend.Repositories.Interface;
+using chatbackend.Services;
+using chatbackend.Services.Interface;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +18,8 @@ builder.Services.AddCors(options =>
         builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
     });
 });
+    builder.Services.AddSingleton<ILoginRepository,LoginRepository>();
+    builder.Services.AddSingleton<ILoginService,LoginService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
